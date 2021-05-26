@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./services/web
+    image: flasking:latest
+    container_name: flasking
+    environment:
+      FLASK_APP: project/__init__.py
+      FLASK_ENV: development
+      DATABASE_URL: postgresql://daniel:flasking@db:5432/flasking_dev
+    depends_on:
+      - db
+    command: python web/manage.py run -h 0.0.0.0
+    volumes:
+    - ./services/web/project:/usr/src/app/web/project
+    - ./services/web/manage.py:/usr/src/app/web/manage.py
+    ports:
+    - 5000:5000
+
+  db:
+    image: postgres:12-alpine
+    container_name: flasking-postgres
+    environment:
+      POSTGRES_USER: daniel
+      POSTGRES_PASSWORD: flasking
+      POSTGRES_DB: flasking_dev
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
