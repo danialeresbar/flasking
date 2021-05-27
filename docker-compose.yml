@@ -7,11 +7,14 @@ services:
     container_name: flasking
     environment:
       FLASK_APP: project/__init__.py
-      FLASK_ENV: development
+      ENVIRONMENT: development
       DATABASE_URL: postgresql://daniel:flasking@db:5432/flasking_dev
+      DATABASE: postgres
+      SQL_HOST: db
+      SQL_PORT: 5432
     depends_on:
       - db
-    command: python web/manage.py run -h 0.0.0.0
+    command: ["./web/scripts/command-dev.sh"]
     volumes:
     - ./services/web/project:/usr/src/app/web/project
     - ./services/web/manage.py:/usr/src/app/web/manage.py
@@ -27,6 +30,8 @@ services:
       POSTGRES_DB: flasking_dev
     volumes:
     - postgres_data:/var/lib/postgresql/data
+    ports:
+    - 50005:5432
 
 volumes:
   postgres_data:
