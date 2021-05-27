@@ -11,8 +11,8 @@ then
     echo "PostgreSQL started"
 fi
 
-python web/manage.py create_database
+python manage.py create_database
 
 exec "$@"
 
-python web/manage.py run -h 0.0.0.0
+python manage.py run -h 0.0.0.0
