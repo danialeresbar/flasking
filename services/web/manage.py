@@ -1,9 +1,16 @@
 from flask.cli import FlaskGroup
 
-from project import app
+from project import app, database
 
 
 cli = FlaskGroup(app)
+
+
+@cli.command('create_database')
+def create_database():
+    database.drop_all()
+    database.create_all()
+    database.session.commit()
 
 
 if __name__ == "__main__":
