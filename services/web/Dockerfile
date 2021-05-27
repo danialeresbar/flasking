@@ -5,8 +5,6 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update && apt-get install -y \
-    gcc \
-    libproj-dev \
     python3-dev
 
 # Set work directory
@@ -19,3 +17,4 @@ RUN pip install -r requirements.txt
 # Copy project files
 COPY project/ web/project/
 COPY manage.py web/manage.py
+COPY scripts/ web/scripts/
