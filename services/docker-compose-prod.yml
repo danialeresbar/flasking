@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./services/web
+    image: flasking:latest
+    container_name: flasking
+    environment:
+      FLASK_APP: project/__init__.py
+      ENVIRONMENT: production
+      DATABASE_URL: postgresql://daniel:flasking@db:5432/flasking_dev
+      DATABASE: postgres
+      SQL_HOST: db
+      SQL_PORT: 5432
+    command: ["./web/scripts/command-prod.sh"]
+    ports:
+    - 5005:5000
+
+  db:
+    image: postgres:12-alpine
+    container_name: flasking-postgres
+    environment:
+      POSTGRES_USER: daniel
+      POSTGRES_PASSWORD: flasking
+      POSTGRES_DB: flasking_dev
+    volumes:
+    - postgres_data_prod:/var/lib/postgresql/data
+    ports:
+    - 50010:5432
+
+volumes:
+  postgres_data_prod
