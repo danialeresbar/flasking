@@ -1,10 +1,13 @@
-# Last update: Adding initial dependencies
+# Last update: Gunicorn added
 
 # A lightweight WSGI web application framework
 Flask==2.0.0
 
 # An extension for Flask that adds support for SQLAlchemy
 Flask-SQLAlchemy==2.5.1
+
+# Python WSGI HTTP Server
+gunicorn==20.0.4
 
 # PostgreSQL python client
 psycopg2-binary==2.8.6
