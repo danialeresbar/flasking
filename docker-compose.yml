@@ -14,7 +14,7 @@ services:
       SQL_PORT: 5432
     depends_on:
       - db
-    command: ["./web/scripts/command-dev.sh"]
+    command: ["./scripts/command-dev.sh"]
     volumes:
     - ./services/web/project:/usr/src/app/web/project
     - ./services/web/manage.py:/usr/src/app/web/manage.py
