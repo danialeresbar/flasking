@@ -16,6 +16,6 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy project files
-COPY project/ web/project/
-COPY manage.py web/manage.py
-COPY scripts/ web/scripts/
+COPY project/ project/
+COPY manage.py manage.py
+COPY scripts/ scripts/
