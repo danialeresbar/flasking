@@ -15,6 +15,7 @@ services:
     command: ["./scripts/command-prod.sh"]
     volumes:
     - ./services/web/project/static:/home/appadm/app/project/static
+    - ./services/web/project/media:/home/appadm/app/project/media
     expose:
       - "5000"
 
@@ -35,6 +36,7 @@ services:
     container_name: flasking-nginx
     volumes:
     - ./services/web/project/static:/home/appadm/app/project/static
+    - ./services/web/project/media:/home/appadm/app/project/media
     ports:
     - 1337:80
     depends_on:
