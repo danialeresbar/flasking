@@ -13,8 +13,8 @@ services:
       SQL_HOST: db
       SQL_PORT: 5432
     command: ["./scripts/command-prod.sh"]
-    ports:
-    - 5005:5000
+    expose:
+      - "5000"
 
   db:
     image: postgres:12-alpine
@@ -27,6 +27,14 @@ services:
     - postgres_data_prod:/var/lib/postgresql/data
     ports:
     - 50010:5432
+
+  nginx:
+    build: ./services/nginx
+    container_name: flasking-nginx
+    ports:
+    - 1337:80
+    depends_on:
+      - web
 
 volumes:
   postgres_data_prod:
