@@ -13,6 +13,8 @@ services:
       SQL_HOST: db
       SQL_PORT: 5432
     command: ["./scripts/command-prod.sh"]
+    volumes:
+    - ./services/web/project/static:/home/appadm/app/project/static
     expose:
       - "5000"
 
@@ -31,6 +33,8 @@ services:
   nginx:
     build: ./services/nginx
     container_name: flasking-nginx
+    volumes:
+    - ./services/web/project/static:/home/appadm/app/project/static
     ports:
     - 1337:80
     depends_on:
