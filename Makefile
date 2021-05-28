@@ -12,3 +12,6 @@ prod-up-attached:
 
 prod-up-detached:
 	docker-compose -f docker-compose.prod.yml up -d --build
+
+prod-down:
+	docker-compose -f docker-compose.prod.yml down -v
