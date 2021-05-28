@@ -47,6 +47,6 @@ RUN mkdir app
 WORKDIR $USER_HOME/app
 
 # Copy project files
-COPY project/ project/
-COPY manage.py manage.py
-COPY scripts/ scripts/
+COPY --chown=appadm project/ project/
+COPY --chown=appadm manage.py manage.py
+COPY --chown=appadm scripts/ scripts/
